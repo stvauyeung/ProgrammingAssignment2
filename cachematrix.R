@@ -1,7 +1,19 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The below functions makeCacheMatrix() and cacheSolve() are used
+## together to calculate and cache the inverse of a square matrix input.
+## By assigning the output of makeCacheMatrix() to a variable,
+## and then passing it to cacheSolve(), the inverse matrix will
+## either by calculated by cacheSolve(), or retrieved
+## from a cached value if one has been set.
 
-## Write a short comment describing this function
+## Example:
+## > cacheMatrix = makeCacheMatrix(squareMatrix)
+## > cacheSolve(cacheMatrix)
+## returns inverse matrix of squareMatrix and caches value
+
+## makeCacheMatrix(), provides a list of setter
+## and getter functions that access cached values of the given input,
+## and if available, access cached values of the inverse matrix of
+## the given input.
 
 makeCacheMatrix <- function(x = matrix()) {
   inverseMatrix <- NULL
@@ -17,10 +29,13 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## cacheSolve() accesses the list of functions provided
+## by makeCacheMatrix().  If a cached value of the inverse matrix
+## is available, it will return this value without re-calculating.
+## Otherwise, the function calculates the inverse matrix of given
+## input, and caches the value for later retrieval.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
   inverseMatrix <- x$getInverseMatrix()
   if(!is.null(inverseMatrix)) {
     message("getting cached data")
